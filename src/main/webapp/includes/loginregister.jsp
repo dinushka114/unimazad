@@ -41,7 +41,7 @@
                 <%}%>
 
                 <% String msgFailed = (String) request.getAttribute("REG_FAILED"); %>
-                <% if (msg != null) {%>
+                <% if (msgFailed != null) {%>
                 <div class="alert alert-danger" role="alert">
                     <%=msgFailed%>
                 </div>

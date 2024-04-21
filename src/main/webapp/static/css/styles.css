@@ -75,3 +75,15 @@
     color: black;
     background-color: #c4d0fa;
 }
+
+.middle_navbar .buttons .log_out_btn{
+    background-color: red;
+    border-radius: 15px;
+    color:white;
+    cursor:pointer;
+}
+
+.middle_navbar .buttons .log_out_btn:hover{
+    background-color: red;
+    color:white;
+}

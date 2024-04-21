@@ -1,5 +1,6 @@
-<div>
+<%@ page import="com.unimazad.models.User"%>
 
+<div>
     <nav class="navbar top_bar">
         <div  class="container ">
             <a class="navbar-brand">Jordan, Amman</a>
@@ -23,8 +24,22 @@
 
             <div class="buttons">
                 <ul>
-                    <li><a class="me-2 log_reg_btn" href="loginreg.jsp">Login/Register</a></li>
+                    <% User auctioner = (User) session.getAttribute("auctioner"); %>
+                    <% User bidder = (User) session.getAttribute("bidder"); %>
+
+                    <% if (auctioner != null) {%>
+                    <li><a class="log_reg_btn" >Hello! <%=auctioner.getEmail()%> </a></li>
                     <li><a class="add_listing_btn" href="#home">Add Listing</a></li>
+                    <li><a href="LogoutController" class="log_out_btn" >Logout </a></li>
+                        <%} else if (bidder != null) {%>
+                    <li><a class="log_reg_btn" >Hello! <%=bidder.getEmail()%> </a></li>
+                    <li><a href="LogoutController" class="log_out_btn" >Logout</a></li>
+                        <%} else {%>
+                    <li><a class="log_reg_btn" href="loginreg.jsp">Login/Register</a></li>
+                        <%}%>
+
+
+
                 </ul>
             </div>
 
