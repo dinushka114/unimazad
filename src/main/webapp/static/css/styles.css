@@ -7,6 +7,11 @@
     color:white;
 }
 
+.middle_navbar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .middle_navbar ul {
     list-style-type: none;
     margin: 0;
@@ -86,4 +91,8 @@
 .middle_navbar .buttons .log_out_btn:hover{
     background-color: red;
     color:white;
+}
+
+.seller_home{
+    margin-top: 50px;
 }
