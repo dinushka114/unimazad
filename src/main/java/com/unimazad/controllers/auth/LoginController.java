@@ -47,9 +47,14 @@ public class LoginController extends HttpServlet {
         
         // check the user is not null
         if(user!=null){
+            // set the session
             session.setAttribute(user.getType(), user);
+            
+            // redirect to the home page after login success
             response.sendRedirect("HomePageController");
         }else{
+            
+            // login failed
             request.setAttribute("LOG_FAILED", "Invalid credentials!");
             request.getRequestDispatcher("loginreg.jsp").forward(request, response);
         }

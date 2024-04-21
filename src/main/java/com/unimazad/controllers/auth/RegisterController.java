@@ -28,18 +28,23 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        // get all the form data
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String type = request.getParameter("type");
         
-        User user = new User();
         
+        // create user object
+        User user = new User();
         user.setEmail(email);
         user.setPassword(password);
         user.setType(type);
         
+        // call the registerUser() method of AuthService
         boolean result = AuthService.registerUser(user);
         
+        // check if registration is done or not
         if(result==true){
             request.setAttribute("REG_OK", "You have successfully registered");
         }else{
