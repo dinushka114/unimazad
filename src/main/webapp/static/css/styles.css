@@ -1,0 +1,77 @@
+.top_bar {
+    background-color: #3d09a2;
+    color: white;
+}
+
+.top_bar .navbar-brand{
+    color:white;
+}
+
+.middle_navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.middle_navbar li {
+    float: left;
+    margin-right: 5px;
+}
+
+.middle_navbar li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.middle_navbar li a:hover:not(.active) {
+    background-color: #c4d0fa;
+    border-radius: 15px;
+    color:black;
+}
+
+.middle_navbar li a.active {
+    color: black;
+    background-color: #c4d0fa;
+    border-radius: 15px;
+
+}
+
+.main_section .login_register{
+    margin-top: 50px;
+}
+
+.main_section  label{
+    font-weight: bold;
+}
+
+.main_section  input[type=text], input[type=password], input[type=email]{
+    border-radius: 20px;
+    margin-top: 5px;
+    width:100%;
+    padding:10px;
+    border: 1px solid #f0ecec;
+}
+
+.main_section input[type=submit]{
+    padding:10px 20px;
+    background-color: #f0ecec;
+    color:black;
+    border:none;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.middle_navbar .buttons .add_listing_btn{
+    background-color: #3d09a2;
+    color:white;
+    border-radius: 15px;
+}
+
+.middle_navbar .buttons .log_reg_btn:hover{
+    color: black;
+    background-color: #c4d0fa;
+}
