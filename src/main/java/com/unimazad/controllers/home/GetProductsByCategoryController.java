@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class HomePageController extends HttpServlet {
+public class GetProductsByCategoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,7 +27,8 @@ public class HomePageController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Product> products = UserService.getAllProducts();
+        int id = Integer.parseInt(request.getParameter("id"));
+        ArrayList<Product> products = UserService.getProductsByCategory(id);
         request.setAttribute("products", products);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
