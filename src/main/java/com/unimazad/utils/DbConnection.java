@@ -18,7 +18,7 @@ public class DbConnection {
     public static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/unimazad?useSSL=false", "root", "12345");
+            connection = DriverManager.getConnection("jdbc:mysql://172.18.0.2:3306/unimazad?useSSL=false", "root", "12345");
         }
         return connection;
     }
