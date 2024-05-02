@@ -53,7 +53,7 @@
     font-weight: bold;
 }
 
-.main_section  input[type=text], input[type=password], input[type=email], textarea, select, input[type=time], input[type=file]{
+.main_section  input[type=text], input[type=password], input[type=email], textarea, select, input[type=datetime-local], input[type=file]{
     border-radius: 20px;
     margin-top: 5px;
     width:100%;

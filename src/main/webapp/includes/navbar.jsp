@@ -30,6 +30,7 @@
                     <% if (auctioner != null) {%>
                     <li><a class="log_reg_btn" >Hello! <%=auctioner.getEmail()%> </a></li>
                     <li><a href="NavigationController?to=SellerHome" class="add_listing_btn" href="#home">Add Listing</a></li>
+                    <li><a href="GetMyListings" class="add_listing_btn" href="#home">My Listings</a></li>
                     <li><a href="LogoutController" class="log_out_btn" >Logout </a></li>
                         <%} else if (bidder != null) {%>
                     <li><a class="log_reg_btn" >Hello! <%=bidder.getEmail()%> </a></li>

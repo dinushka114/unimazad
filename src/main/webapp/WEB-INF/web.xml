@@ -20,6 +20,14 @@
         <servlet-name>NavigationController</servlet-name>
         <servlet-class>com.unimazad.controllers.navigation.NavigationController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewProductListing</servlet-name>
+        <servlet-class>com.unimazad.controllers.seller.NewProductListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetMyListings</servlet-name>
+        <servlet-class>com.unimazad.controllers.seller.GetMyListings</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>NavigationController</servlet-name>
         <url-pattern>/NavigationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewProductListing</servlet-name>
+        <url-pattern>/NewProductListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMyListings</servlet-name>
+        <url-pattern>/GetMyListings</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

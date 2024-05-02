@@ -13,7 +13,7 @@
                 <h2>New listing</h2>
                 <hr>
 
-                <form action="LoginController" method="post">
+                <form action="NewProductListing" method="post" enctype="multipart/form-data">
 
                     <% String msgLogFailed = (String) request.getAttribute("LOG_FAILED"); %>
                     <% if (msgLogFailed != null) {%>
@@ -31,14 +31,29 @@
                     </div>
                     <div class="mb-3">
                         <label>Description</label> <br>
-                        <textarea></textarea>
+                        <textarea name="description"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label>Category</label> <br>
-                        <select>
-                            <option>Category 1</option>
-                            <option>Category 2</option>
+                        <select name="category">
+                            <option value="1">Books</option>
+                            <option value="2">Stationery</option>
+                            <option value="3">School Uniforms</option>
+                            <option value="4">Sports Equipment</option>
+                            <option value="5">Art Supplies</option>
+                            <option value="6">Electronics</option>
+                            <option value="7">Musical Instruments</option>
+                            <option value="8">School Bags</option>
+                            <option value="9">Lab Equipment</option>
+                            <option value="10">Furniture</option>
+                            <option value="11">Educational Toys/Games</option>
+                            <option value="12">Fitness Equipment</option>
+                            <option value="13">School Supplies Bundles</option>
+                            <option value="14">Educational Software</option>
+                            <option value="15">Event Tickets</option>
+                            <option value="16">Food and Beverages</option>
+                            <option value="17">Gift Cards</option>
                         </select>
                     </div>
 
@@ -49,12 +64,12 @@
 
                     <div class="mb-3">
                         <label>Start Time</label> <br>
-                        <input type="time"  name="start_time" />
+                        <input type="datetime-local"  name="start_time" />
                     </div>
 
                     <div class="mb-3">
                         <label>End Time</label> <br>
-                        <input type="time"  name="end_time" />
+                        <input type="datetime-local"  name="end_time" />
                     </div>
 
                     <div class="mb-3">
