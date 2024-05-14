@@ -15,6 +15,7 @@ public class Product {
     private String startDate;
     private String endDate;
     private int aucId;
+    private String status;
 
     public int getId() {
         return id;
@@ -87,6 +88,15 @@ public class Product {
     public void setAucId(int aucId) {
         this.aucId = aucId;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     
     
 }

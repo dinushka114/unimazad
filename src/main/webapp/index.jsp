@@ -13,6 +13,7 @@
         <style>
             .badge{
                 margin-bottom: 10px;
+                text-decoration: none;
             }
         </style>
     </head>
@@ -42,6 +43,33 @@
                 <a class="badge text-bg-primary p-2" href="GetProductsByCategoryController?id=16">Food and Beverages</a>
                 <a class="badge text-bg-primary p-2" href="GetProductsByCategoryController?id=17">Gift Cards</a>
             </div>
+            
+            
+
+            <% String alreadyBiddedMsg = (String) request.getAttribute("ALREADY_BIDDED"); %>
+            <% if (alreadyBiddedMsg != null) {%>
+
+            <div class="alert alert-danger" role="alert">
+                <%=alreadyBiddedMsg%>
+            </div>
+            <%}%>
+
+            <% String bidLowMsg = (String) request.getAttribute("BID_LOW"); %>
+            <% if (bidLowMsg != null) {%>
+
+            <div class="alert alert-danger" role="alert">
+                <%=bidLowMsg%>
+            </div>
+            <%}%>
+
+            <% String okMsg = (String) request.getAttribute("OK"); %>
+            <% if (okMsg != null) {%>
+
+            <div class="alert alert-success" role="alert">
+                <%=okMsg%>
+            </div>
+            <%}%>
+
 
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 mt-4">
                 <div class="col mb-5">
@@ -49,34 +77,46 @@
                     <%if (products != null) {%>
                     <%for (Product item : products) {%>
                     <div class="card h-100">
-                        <!--<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"> </div>-->
                         <img style="width: 100%; height: 200px; object-fit: cover;" class="card-img-top" src="<%=contextPath%>/uploads/<%=item.getImage()%>" alt="..." />
-                        <div class="card-body p-4">
+                        <div class="card-body">
                             <div class="text-center">
                                 <h5 class="fw-bolder"><%=item.getName()%></h5>
                                 Starting bid -  <span class="badge text-bg-success p-2">$<%=item.getStartPrice()%>0</span>
                             </div>
+
                         </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="card-footer pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
 
-                                Time left - <div class="badge text-bg-danger p-2" id="<%=item.getId()%>"></div>
+                                <span class="countdown">
+                                    Time left - <div class="badge text-bg-danger p-2" id="<%=item.getId()%>"></div>
+                                </span>
+
+                                <form id="makeBidForm" action="MakeBidController" method="post" class="">
+                                    <input type="hidden" name="product_id" value="<%=item.getId()%>" />
+                                    <input type="hidden" name="starting_bid" value="<%=item.getStartPrice()%>" />
+                                    <input type="number" name="bid_amount" placeholder="Make a bid" required /> 
+                                    <input type="submit" name="submit" value="Place a bid" class="mt-2" />
+                                </form>
+
                                 <script>
                                     function updateCountdown(dbDate, countDownId) {
                                         var targetDate = new Date(dbDate)
                                         var now = new Date();
                                         var timeDifference = targetDate - now;
 
-                                        // Calculate remaining days, hours, minutes, and seconds
+                                        if (timeDifference <= 0) {
+                                            document.querySelector('#makeBidForm').style.display = 'none';
+                                            document.querySelector('.countdown').style.display = 'none';
+                                        }
+
                                         var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
                                         var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                                         var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
                                         var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-                                        // Display the countdown timer
                                         document.getElementById(countDownId).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 
-                                        // Update the timer every second
                                         setTimeout(function () {
                                             updateCountdown(dbDate, countDownId);
                                         }, 1000);

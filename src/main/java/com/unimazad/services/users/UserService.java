@@ -4,6 +4,7 @@
  */
 package com.unimazad.services.users;
 
+import com.unimazad.models.Bid;
 import com.unimazad.models.Product;
 import com.unimazad.utils.DbConnection;
 import java.sql.Connection;
@@ -76,15 +77,51 @@ public class UserService {
         return myListings;
     }
      
-    public static double getCurrentHighestBid(int productId){
-        double bid = 0;
+    public static ArrayList<Bid> getCurrentBids(int productId){
+        ArrayList<Bid> bids = new ArrayList<Bid>();
         
         try{
+            connection = DbConnection.getDbConnection();
+            String query = "SELECT * FROM bids WHERE product_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, productId);
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                Bid bid = new Bid();
+                bid.setBidId(resultSet.getInt("bid_id"));
+                bid.setBidAmount(resultSet.getDouble("bid_amount"));
+                bid.setBidTime(resultSet.getString("bid_time"));
+                bid.setBidderId(resultSet.getInt("bidder_id"));
+                bid.setProductId(resultSet.getInt("product_id"));
+                bids.add(bid);
+                
+            }
             
         }catch(Exception e){
             e.printStackTrace();
         }
         
-        return bid;
+        return bids;
+    }
+    
+    public static boolean makeAbid(Bid bid){
+        boolean result = false;
+        
+        try{
+            connection = DbConnection.getDbConnection();
+            String query = "INSERT INTO bids (bid_amount, bidder_id, product_id) VALUES (?,?,?)";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setDouble(1, bid.getBidAmount());
+            preparedStatement.setInt(2, bid.getBidderId());
+            preparedStatement.setInt(3, bid.getProductId());
+            result = preparedStatement.executeUpdate() > 0;
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return result;
     }
 }
