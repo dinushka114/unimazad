@@ -12,6 +12,8 @@ public class Bid {
     private int bidderId;
     private String bidderName;
     private int productId;
+    private String productName;
+    private String productImage;
 
     public int getBidId() {
         return bidId;
@@ -59,6 +61,22 @@ public class Bid {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
     
     

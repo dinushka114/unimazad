@@ -43,6 +43,22 @@
         <servlet-name>MakeBidController</servlet-name>
         <servlet-class>com.unimazad.controllers.seller.MakeBidController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetSingleListing</servlet-name>
+        <servlet-class>com.unimazad.controllers.seller.GetSingleListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateListing</servlet-name>
+        <servlet-class>com.unimazad.controllers.seller.UpdateListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteListing</servlet-name>
+        <servlet-class>com.unimazad.controllers.seller.DeleteListing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetMyBids</servlet-name>
+        <servlet-class>com.unimazad.controllers.user.GetMyBids</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
@@ -82,6 +98,22 @@
     <servlet-mapping>
         <servlet-name>MakeBidController</servlet-name>
         <url-pattern>/MakeBidController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSingleListing</servlet-name>
+        <url-pattern>/GetSingleListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateListing</servlet-name>
+        <url-pattern>/UpdateListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteListing</servlet-name>
+        <url-pattern>/DeleteListing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMyBids</servlet-name>
+        <url-pattern>/GetMyBids</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

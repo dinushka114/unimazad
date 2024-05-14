@@ -134,10 +134,6 @@
         </div>
         <script>
 
-            // Function to update the countdown timer
-
-
-            // Initial call to start the countdown timer
 
         </script>
     </body>

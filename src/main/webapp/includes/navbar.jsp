@@ -33,7 +33,7 @@
                     <li><a href="GetMyListings" class="add_listing_btn" href="#home">My Listings</a></li>
                     <li><a href="LogoutController" class="log_out_btn" >Logout </a></li>
                         <%} else if (bidder != null) {%>
-                    <li><a class="log_reg_btn" >Hello! <%=bidder.getEmail()%> </a></li>
+                    <li><a href="GetMyBids" class="log_reg_btn" >Hello! <%=bidder.getEmail()%> </a></li>
                     <li><a href="LogoutController" class="log_out_btn" >Logout</a></li>
                         <%} else {%>
                     <li><a class="log_reg_btn" href="loginreg.jsp">Login/Register</a></li>

@@ -124,4 +124,31 @@ public class UserService {
         
         return result;
     }
+    
+    public static ArrayList<Bid> getMyBids(int userId){
+        
+        ArrayList<Bid> bids = new ArrayList<Bid>();
+        
+        try{
+            connection = DbConnection.getDbConnection();
+            String query = "SELECT b.bid_id, b.bid_amount, b.bid_time, p.name, p.image FROM bids b, products p WHERE b.product_id = p.product_id AND b.bidder_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Bid bid = new Bid();
+                bid.setBidId(resultSet.getInt("bid_id"));
+                bid.setBidAmount(resultSet.getDouble("bid_amount"));
+                bid.setBidTime(resultSet.getString("bid_time"));
+                bid.setProductName(resultSet.getString("name"));
+                bid.setProductImage(resultSet.getString("image"));
+                bids.add(bid);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return bids;
+    }
 }

@@ -29,6 +29,8 @@
                             <th>Start Price</th>
                             <th>Start Date</th>
                             <th>End Date</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     
@@ -48,6 +50,8 @@
                                 <td><%=product.getStartPrice()%></td>
                                 <td><%=product.getStartDate()%></td>
                                 <td><%=product.getEndDate()%></td>
+                                <td> <a href="GetSingleListing?id=<%=product.getId()%>"> Update </a> </td>
+                                <td> <a href="DeleteListing?id=<%=product.getId()%>"> Delete </a> </td>
                             </tr>
                         
                         <%}}%>

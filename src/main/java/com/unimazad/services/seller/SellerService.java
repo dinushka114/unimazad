@@ -11,17 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-
 public class SellerService {
-    
+
     private static PreparedStatement preparedStatement;
     private static Connection connection;
     private static ResultSet resultSet;
-    
-    public static boolean newListing(Product product){
+
+    public static boolean newListing(Product product) {
         boolean result = false;
-        
-        try{
+
+        try {
             connection = DbConnection.getDbConnection();
             String query = "INSERT INTO products (name, image, description, category_id, start_price, start_time, end_time, auctioner_id) VALUES (?,?,?,?,?,?,?,?)";
             preparedStatement = connection.prepareStatement(query);
@@ -33,27 +32,27 @@ public class SellerService {
             preparedStatement.setString(6, product.getStartDate());
             preparedStatement.setString(7, product.getEndDate());
             preparedStatement.setInt(8, product.getAucId());
-            
+
             result = preparedStatement.executeUpdate() > 0;
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return result;
     }
-    
-    public static ArrayList<Product> getMyListings(int id){
+
+    public static ArrayList<Product> getMyListings(int id) {
         ArrayList<Product> myListings = new ArrayList<Product>();
-        
-        try{
+
+        try {
             connection = DbConnection.getDbConnection();
             String query = "SELECT * FROM products WHERE auctioner_id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
-            
-            while(resultSet.next()){
+
+            while (resultSet.next()) {
                 Product product = new Product();
                 product.setId(resultSet.getInt("product_id"));
                 product.setName(resultSet.getString("name"));
@@ -65,11 +64,78 @@ public class SellerService {
                 product.setStartPrice(resultSet.getDouble("start_price"));
                 myListings.add(product);
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return myListings;
+    }
+
+    public static Product getSigleListing(int id) {
+        Product product = null;
+
+        try {
+            connection = DbConnection.getDbConnection();
+            String query = "SELECT * FROM products WHERE product_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                product = new Product();
+                product.setId(resultSet.getInt("product_id"));
+                product.setName(resultSet.getString("name"));
+                product.setImage(resultSet.getString("image"));
+                product.setDescription(resultSet.getString("description"));
+                product.setCategoryId(resultSet.getInt("category_id"));
+                product.setStartDate(resultSet.getString("start_time"));
+                product.setEndDate(resultSet.getString("end_time"));
+                product.setStartPrice(resultSet.getDouble("start_price"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
+    
+    public static boolean updateListing(Product product){
+        boolean result = false;
+        
+        try{
+            connection = DbConnection.getDbConnection();
+            String query = "UPDATE products SET name = ?, image = ?, description = ?, category_id = ?, end_time = ? WHERE product_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getImage());
+            preparedStatement.setString(3, product.getDescription());
+            preparedStatement.setInt(4, product.getCategoryId());
+            preparedStatement.setString(5, product.getEndDate());
+            preparedStatement.setInt(6, product.getId());
+            result = preparedStatement.executeUpdate() > 0;
             
         }catch(Exception e){
             e.printStackTrace();
         }
         
-        return myListings;
+        return result;
+    }
+    
+    public static boolean deleteListing(int id){
+         boolean result = false;
+        
+        try{
+            connection = DbConnection.getDbConnection();
+            String query = "DELETE FROM products WHERE product_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            result = preparedStatement.executeUpdate() > 0;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return result;
     }
 }
